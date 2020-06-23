@@ -126,6 +126,7 @@ def test_ie_viewport_screenshot_with_scrolling(eyes, driver):
 
 
 @pytest.mark.test_page_url("http://applitools.github.io/demo/TestPages/FramesTestPage/")
+@pytest.mark.eyes_config(parent_branch_name="master", branch_name="master_python")
 def test_switch_back_to_frame_after_check(eyes, driver):
     eyes_driver = eyes.open(
         driver,
