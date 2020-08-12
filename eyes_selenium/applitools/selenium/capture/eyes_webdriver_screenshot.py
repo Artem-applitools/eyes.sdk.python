@@ -39,8 +39,8 @@ class EyesWebDriverScreenshot(EyesScreenshot):
 
     _driver = attr.ib()  # type: EyesWebDriver
     _image = attr.ib()  # type: Image.Image
-    _screenshot_type = attr.ib()  # type: ScreenshotType
-    _frame_location_in_screenshot = attr.ib()  # type: Point
+    _screenshot_type = attr.ib()  # type: Optional[ScreenshotType]
+    _frame_location_in_screenshot = attr.ib()  # type: Optional[Point]
     _current_frame_scroll_position = attr.ib(default=None)  # type: Optional[Point]
     frame_window = attr.ib(default=None)  # type: Region
     region_window = attr.ib(default=Region(0, 0, 0, 0))  # type: Region
@@ -49,22 +49,32 @@ class EyesWebDriverScreenshot(EyesScreenshot):
     @classmethod
     def create_viewport(cls, driver, image):
         # type: (EyesWebDriver, Image.Image) -> EyesWebDriverScreenshot
-        instance = cls(driver, image, ScreenshotType.VIEWPORT, None)
+        instance = cls(
+            driver=driver,
+            image=image,
+            screenshot_type=ScreenshotType.VIEWPORT,
+            frame_location_in_screenshot=None,
+        )
         instance._validate_frame_window()
         return instance
 
     @classmethod
     def create_full_page(cls, driver, image, frame_location_in_screenshot):
         # type: (EyesWebDriver, Image.Image, Point) -> EyesWebDriverScreenshot
-        return cls(driver, image, None, frame_location_in_screenshot)
+        return cls(
+            driver=driver,
+            image=image,
+            screenshot_type=None,
+            frame_location_in_screenshot=frame_location_in_screenshot,
+        )
 
     @classmethod
     def create_entire_frame(cls, driver, image, entire_frame_size):
         # type: (EyesWebDriver, Image.Image, RectangleSize) -> EyesWebDriverScreenshot
         return cls(
-            driver,
-            image,
-            ScreenshotType.ENTIRE_FRAME,
+            driver=driver,
+            image=image,
+            screenshot_type=ScreenshotType.ENTIRE_FRAME,
             frame_location_in_screenshot=Point(0, 0),
             current_frame_scroll_position=Point(0, 0),
             frame_window=Region.from_(Point(0, 0), entire_frame_size),
@@ -74,10 +84,10 @@ class EyesWebDriverScreenshot(EyesScreenshot):
     def from_screenshot(cls, driver, image, screenshot_region):
         # type: (EyesWebDriver, Image.Image, Region) -> EyesWebDriverScreenshot
         return cls(
-            driver,
-            image,
-            ScreenshotType.ENTIRE_FRAME,
-            Point.ZERO(),
+            driver=driver,
+            image=image,
+            screenshot_type=ScreenshotType.ENTIRE_FRAME,
+            frame_location_in_screenshot=Point.ZERO(),
             frame_window=Region.from_(Point.ZERO(), screenshot_region.size),
             region_window=Region.from_(screenshot_region),
         )
