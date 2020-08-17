@@ -277,7 +277,7 @@ def _process_raw_css_node(node, minimize_css=True):
     return "".join(iterate_css_sub_nodes(node))
 
 
-def _parse_and_serialize_css(node, text, minimize=False):
+def _parse_and_serialize_css(node, text, minimize=False):  # noqa
     # type: (CssNode, tp.Text, bool) -> tp.Generator
     def is_import_node(n):
         return n.type == "at-rule" and n.lower_at_keyword == "import"
