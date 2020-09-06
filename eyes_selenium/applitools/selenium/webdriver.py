@@ -291,6 +291,15 @@ class EyesWebDriver(object):
     @property
     def user_agent(self):
         # type: () -> useragent.UserAgent
+        if self.is_mobile_app:
+            major_version = minor_version = None
+            if self.platform_version:
+                major_version, minor_version = self.platform_version.split(".", 2)
+            self._user_agent = useragent.UserAgent(
+                os=self.platform_name,
+                os_major_version=major_version,
+                os_minor_version=minor_version,
+            )
         if self._user_agent:
             return self._user_agent
         try:
