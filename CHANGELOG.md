@@ -1,3 +1,7 @@
+## [vNext]
+### Added
+- Supporting check full element with ufg [Trello 2145](https://trello.com/c/8tPAnz66)
+
 ## [4.8.0] - 2020-09-07
 ### Added
 - VisualGrid Options [Trello 2089](https://trello.com/c/d4zggQes)
