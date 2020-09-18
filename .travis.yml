@@ -235,7 +235,7 @@ jobs:
                   echo "REPORTED SUCCESSFULLY";
                 fi
 
-        - stage: tutorials-test
+        - if: NOT tag =~ ^RELEASE_CANDIDATE
           python: 3.6
           script: bash ./tutorials/tutorials.sh
         - stage: deploy
