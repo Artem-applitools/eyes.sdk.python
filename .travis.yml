@@ -235,6 +235,9 @@ jobs:
                   echo "REPORTED SUCCESSFULLY";
                 fi
 
+        - stage: tutorials-test
+          python: 3.6
+          script: bash ./tutorials/tutorials.sh
         - stage: deploy
           if: tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ AND fork == false
           python: 3.6

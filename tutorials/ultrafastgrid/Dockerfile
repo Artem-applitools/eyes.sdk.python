@@ -1,13 +1,13 @@
 FROM tutorial_python:latest
-ARG repo=tutorial-selenium-python
+ARG repo=tutorial-selenium-python-ultrafastgrid
 ARG package
 ENV REPOSITORY_NAME=$repo
 RUN cd home/project \
     && git clone https://github.com/applitools/${REPOSITORY_NAME}.git \
-    && cd ${REPOSITORY_NAME}
-#    && sed -i "s=.*eyes-selenium.*=/$package=g" requirements.txt
+    && cd ${REPOSITORY_NAME} \
+    && sed -i 's/"APPLITOOLS_API_KEY"/os.getenv("APPLITOOLS_API_KEY")/g' ultrafastgrid_demo.py
 
-COPY start.sh /
+COPY ./ultrafastgrid/start.sh /
 COPY package/ /
 
 RUN cd home/project/${REPOSITORY_NAME} \
