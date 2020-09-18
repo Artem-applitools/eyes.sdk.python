@@ -10,5 +10,5 @@ cd ../eyes_selenium && python setup.py sdist && mv ./dist/* ../tutorials/package
 cd ../eyes_common && python setup.py sdist && mv ./dist/* ../tutorials/package/
 cd ../eyes_core && python setup.py sdist && mv ./dist/* ../tutorials/package/
 cd $DIR
-docker build --no-cache --build-arg package="$(ls ./package)" -t tutorial_python_basic -f ./basic/Dockerfile ../
-docker build --no-cache --build-arg package="$(ls ./package)" -t tutorial_python_ufg -f ./ultrafastgrid/Dockerfile ../
+docker build --no-cache --build-arg package="$(ls ./package)" -t tutorial_python_basic -f ./basic/Dockerfile .
+docker build --no-cache --build-arg package="$(ls ./package)" -t tutorial_python_ufg -f ./ultrafastgrid/Dockerfile .
