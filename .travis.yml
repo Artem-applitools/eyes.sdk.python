@@ -265,6 +265,7 @@ jobs:
             - inv install-packages --common
             - inv install-packages --core
             - inv install-packages --selenium
+            - inv retrieve-js
             - bash ./tutorials/tutorials.sh
         - stage: deploy
           if: tag =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ AND fork == false
