@@ -261,10 +261,9 @@ jobs:
         - if: NOT tag =~ ^RELEASE_CANDIDATE
           python: 3.6
           script:
+            - pip install invoke
             - inv install-requirements
-            - inv install-packages --common
-            - inv install-packages --core
-            - inv install-packages --selenium
+            - inv install-packages
             - inv retrieve-js
             - bash ./tutorials/tutorials.sh
         - stage: deploy
