@@ -261,7 +261,7 @@ jobs:
         - if: NOT tag =~ ^RELEASE_CANDIDATE
           python: 3.6
           script:
-            - inv install-requirements --testing
+            - inv install-requirements
             - inv install-packages --common
             - inv install-packages --core
             - inv install-packages --selenium
