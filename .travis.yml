@@ -57,118 +57,118 @@ jobs:
                 fi
 
 
-        - stage: unit-tests
-          python: 2.7
-          env:
-              - TOX_ENV=unit
-        - python: 3.6
-          env:
-              - TOX_ENV=unit
-        - os: windows
-          language: sh
-          python: 3.6
-          before_install:
-              - choco install python --version=3.6.6
-              - choco install -y --force nodejs-lts
-              - python -m pip install -U pip setuptools
-          env:
-              - TOX_ENV=unit
-              - PATH="/c/Python36:/c/Python36/Scripts:/c/Program Files/Nodejs:$PATH"
-          cache:
-              directories:
-                - $LOCALAPPDATA/pip/Cache
-        - os: windows
-          language: sh
-          before_install:
-              - choco install python2
-              - choco install -y --force nodejs-lts
-              - python -m pip install -U pip setuptools
-          env:
-              - TOX_ENV=unit
-              - PATH="/c/Python27:/c/Python27/Scripts:/c/Program Files/Nodejs:$PATH"
-          cache:
-              directories:
-                - $LOCALAPPDATA/pip/Cache
-        - os: osx
-          language: sh
-          python: 3.6
-          env:
-              - TOX_ENV=unit
-
-
-        - stage: integration-tests
-          python: 2.7
-          env:
-              - TOX_ENV=integration
-        - python: 3.6
-          env:
-              - TOX_ENV=integration
-        - os: windows
-          language: sh
-          before_install:
-              - choco install python --version=3.6.6
-              - choco install -y --force nodejs-lts
-              - python -m pip install -U pip setuptools
-          env:
-              - TOX_ENV=integration
-              - PATH="/c/Python36:/c/Python36/Scripts:/c/Program Files/Nodejs:$PATH"
-          cache:
-              directories:
-                  - $LOCALAPPDATA/pip/Cache
-        - os: windows
-          language: sh
-          before_install:
-              - choco install python2
-              - choco install -y --force nodejs-lts
-              - python -m pip install -U pip setuptools
-          env:
-              - TOX_ENV=integration
-              - PATH="/c/Python27:/c/Python27/Scripts:/c/Program Files/Nodejs:$PATH"
-          cache:
-              directories:
-                  - $LOCALAPPDATA/pip/Cache
-        - os: osx
-          language: sh
-          python: 3.6
-          env:
-              - TOX_ENV=integration
-
-
-        - stage: functional-tests
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          python: 3.6
-          addons:
-              chrome: stable
-              firefox: latest
-          env:
-              - TOX_ENV=selenium
-              - TEST_PLATFORM=Linux
-              - TEST_BROWSERS=chrome
-        - python: 3.6
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          addons:
-              chrome: stable
-          env:
-              - TOX_ENV=desktop
-              - TEST_PLATFORM=Linux
-              - TEST_BROWSERS=chrome
-        - python: 2.7
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          addons:
-              chrome: stable
-          env:
-              - TOX_ENV=selenium
-              - TEST_PLATFORM=Linux
-              - TEST_BROWSERS=chrome
-        - python: 3.6
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          addons:
-              chrome: stable
-          env:
-              - TOX_ENV=desktop
-              - TEST_PLATFORM=Linux
-              - TEST_RUN_ON_VG=true
-              - TEST_BROWSERS=chrome
+#        - stage: unit-tests
+#          python: 2.7
+#          env:
+#              - TOX_ENV=unit
+#        - python: 3.6
+#          env:
+#              - TOX_ENV=unit
+#        - os: windows
+#          language: sh
+#          python: 3.6
+#          before_install:
+#              - choco install python --version=3.6.6
+#              - choco install -y --force nodejs-lts
+#              - python -m pip install -U pip setuptools
+#          env:
+#              - TOX_ENV=unit
+#              - PATH="/c/Python36:/c/Python36/Scripts:/c/Program Files/Nodejs:$PATH"
+#          cache:
+#              directories:
+#                - $LOCALAPPDATA/pip/Cache
+#        - os: windows
+#          language: sh
+#          before_install:
+#              - choco install python2
+#              - choco install -y --force nodejs-lts
+#              - python -m pip install -U pip setuptools
+#          env:
+#              - TOX_ENV=unit
+#              - PATH="/c/Python27:/c/Python27/Scripts:/c/Program Files/Nodejs:$PATH"
+#          cache:
+#              directories:
+#                - $LOCALAPPDATA/pip/Cache
+#        - os: osx
+#          language: sh
+#          python: 3.6
+#          env:
+#              - TOX_ENV=unit
+#
+#
+#        - stage: integration-tests
+#          python: 2.7
+#          env:
+#              - TOX_ENV=integration
+#        - python: 3.6
+#          env:
+#              - TOX_ENV=integration
+#        - os: windows
+#          language: sh
+#          before_install:
+#              - choco install python --version=3.6.6
+#              - choco install -y --force nodejs-lts
+#              - python -m pip install -U pip setuptools
+#          env:
+#              - TOX_ENV=integration
+#              - PATH="/c/Python36:/c/Python36/Scripts:/c/Program Files/Nodejs:$PATH"
+#          cache:
+#              directories:
+#                  - $LOCALAPPDATA/pip/Cache
+#        - os: windows
+#          language: sh
+#          before_install:
+#              - choco install python2
+#              - choco install -y --force nodejs-lts
+#              - python -m pip install -U pip setuptools
+#          env:
+#              - TOX_ENV=integration
+#              - PATH="/c/Python27:/c/Python27/Scripts:/c/Program Files/Nodejs:$PATH"
+#          cache:
+#              directories:
+#                  - $LOCALAPPDATA/pip/Cache
+#        - os: osx
+#          language: sh
+#          python: 3.6
+#          env:
+#              - TOX_ENV=integration
+#
+#
+#        - stage: functional-tests
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          python: 3.6
+#          addons:
+#              chrome: stable
+#              firefox: latest
+#          env:
+#              - TOX_ENV=selenium
+#              - TEST_PLATFORM=Linux
+#              - TEST_BROWSERS=chrome
+#        - python: 3.6
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          addons:
+#              chrome: stable
+#          env:
+#              - TOX_ENV=desktop
+#              - TEST_PLATFORM=Linux
+#              - TEST_BROWSERS=chrome
+#        - python: 2.7
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          addons:
+#              chrome: stable
+#          env:
+#              - TOX_ENV=selenium
+#              - TEST_PLATFORM=Linux
+#              - TEST_BROWSERS=chrome
+#        - python: 3.6
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          addons:
+#              chrome: stable
+#          env:
+#              - TOX_ENV=desktop
+#              - TEST_PLATFORM=Linux
+#              - TEST_RUN_ON_VG=true
+#              - TEST_BROWSERS=chrome
 #        - python: 3.6
 #          if: NOT tag =~ ^RELEASE_CANDIDATE
 #          env:
@@ -184,11 +184,11 @@ jobs:
 #              - TEST_BROWSERS="internet\ explorer"
 #              - TEST_REMOTE=1
 #              - PYTEST_ADDOPTS="--ignore=tests/functional/eyes_selenium/selenium/test_dom_capture.py"
-        - python: 3.6
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          env:
-              - TOX_ENV=images
-              - TEST_PLATFORM="Linux"
+#        - python: 3.6
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          env:
+#              - TOX_ENV=images
+#              - TEST_PLATFORM="Linux"
 #        - os: windows
 #          language: sh
 #          python: "3.7"
@@ -217,46 +217,46 @@ jobs:
 #          script:
 #              - echo $APPLITOOLS_BATCH_ID
 #              - python3 -m tox -e $TOX_ENV
-        - python: 3.6
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          env:
-              - TOX_ENV=mobile
-              - TEST_PLATFORM="iOS"
-              - TEST_REMOTE=1
-        - python: 3.6
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          env:
-              - TOX_ENV=mobile
-              - TEST_PLATFORM="Android"
-              - TEST_REMOTE=1
-        - python: 3.6
-          if: NOT tag =~ ^RELEASE_CANDIDATE
-          addons:
-              chrome: stable
-          env:
-              - TOX_ENV=selenium-visualgrid
-              - TEST_PLATFORM=Linux
-              - TEST_BROWSERS=chrome
-        - if: NOT tag =~ ^RELEASE_CANDIDATE
-          python: 3.6
-          node_js: 14
-          addons:
-              chrome: stable
-              firefox: latest
-          env:
-              - TOX_ENV=selenium-generated
-              - TEST_PLATFORM=Linux
-              - TEST_BROWSERS=chrome
-          before_install:
-              - git submodule update --init --remote --recursive
-              - nvm install node
-          script:
-              - tox -e selenium-generated
-              - if [[ $TRAVIS_EVENT_TYPE = cron ]]; then
-                  echo "REPORTING...";
-                  bash ./ci_scripts/all_tests_report.sh "$SDK";
-                  echo "REPORTED SUCCESSFULLY";
-                fi
+#        - python: 3.6
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          env:
+#              - TOX_ENV=mobile
+#              - TEST_PLATFORM="iOS"
+#              - TEST_REMOTE=1
+#        - python: 3.6
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          env:
+#              - TOX_ENV=mobile
+#              - TEST_PLATFORM="Android"
+#              - TEST_REMOTE=1
+#        - python: 3.6
+#          if: NOT tag =~ ^RELEASE_CANDIDATE
+#          addons:
+#              chrome: stable
+#          env:
+#              - TOX_ENV=selenium-visualgrid
+#              - TEST_PLATFORM=Linux
+#              - TEST_BROWSERS=chrome
+#        - if: NOT tag =~ ^RELEASE_CANDIDATE
+#          python: 3.6
+#          node_js: 14
+#          addons:
+#              chrome: stable
+#              firefox: latest
+#          env:
+#              - TOX_ENV=selenium-generated
+#              - TEST_PLATFORM=Linux
+#              - TEST_BROWSERS=chrome
+#          before_install:
+#              - git submodule update --init --remote --recursive
+#              - nvm install node
+#          script:
+#              - tox -e selenium-generated
+#              - if [[ $TRAVIS_EVENT_TYPE = cron ]]; then
+#                  echo "REPORTING...";
+#                  bash ./ci_scripts/all_tests_report.sh "$SDK";
+#                  echo "REPORTED SUCCESSFULLY";
+#                fi
 
         - if: NOT tag =~ ^RELEASE_CANDIDATE
           python: 3.6
